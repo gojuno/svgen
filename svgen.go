@@ -172,22 +172,25 @@ const template = `
 	{{range $typeName, $typeInfo := . }}
 		{{if not $typeInfo.FoundScan }}
 			func (t *{{$typeName}}) Scan(i interface{}) error {
+				var vv {{$typeName}}
 				switch v := i.(type) {
 				case nil:
 					return nil
 				{{if eq $typeInfo.Kind "string"}}case []byte:
-					*t = {{$typeName}}(v){{end}}
+					vv = {{$typeName}}(v){{end}}
 				case {{$typeInfo.Kind}}:
-					*t = {{$typeName}}(v)
+					vv = {{$typeName}}(v)
 				default:
 					return fmt.Errorf("can't scan %T into %T", v, t)
 				}
 
-				switch *t {
+				switch vv {
 				{{range $value := $typeInfo.Values}}case {{$value}}:{{end}}
 				default:
 					return fmt.Errorf("invalid value of type {{$typeName}}: %v", *t)
 				}
+
+				*t = vv
 
 				return nil
 			}
