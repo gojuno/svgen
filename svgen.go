@@ -15,7 +15,8 @@ import (
 
 type (
 	options struct {
-		Package string
+		Package        string
+		OutputFileName string
 	}
 
 	typeValue struct {
@@ -58,7 +59,7 @@ func main() {
 	}
 	cfg.Import(opts.Package)
 
-	outputFile := filepath.Join(packagePath, "scanners_valuers.go")
+	outputFile := filepath.Join(packagePath, opts.OutputFileName)
 
 	if err := os.Remove(outputFile); err != nil && !os.IsNotExist(err) {
 		die(err)
@@ -71,7 +72,7 @@ func main() {
 
 	gen := generator.New(prog)
 	gen.SetPackageName(prog.Package(opts.Package).Pkg.Name())
-	gen.SetHeader("DO NOT EDIT! This code was generated automatically.")
+	gen.SetHeader("DO NOT EDIT! This code was generated automatically using github.com/gojuno/svgen v1.0")
 
 	v := &visitor{
 		gen:         gen,
@@ -214,7 +215,8 @@ const template = `
 
 func processFlags() *options {
 	var (
-		input = flag.String("i", "", "import path of the package containing type declarations")
+		input  = flag.String("i", "", "import path of the package containing type declarations")
+		output = flag.String("o", "scanners_valuers.go", "output file name")
 	)
 
 	flag.Parse()
@@ -225,7 +227,8 @@ func processFlags() *options {
 	}
 
 	return &options{
-		Package: *input,
+		Package:        *input,
+		OutputFileName: *output,
 	}
 }
 
