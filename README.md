@@ -1,4 +1,4 @@
-###Summary
+# Summary
 Svgen search for the constants of types which are the aliases for int or string types, i.e.:
 
 ```go
@@ -65,7 +65,7 @@ func (t RideStatus) Value() (driver.Value, error) {
 }
 ``` 
 
-###Supported command line flags:
+# Supported command line flags:
 ```
   -i string
     	import path of the package containing type declarations
@@ -73,7 +73,7 @@ func (t RideStatus) Value() (driver.Value, error) {
     	output file name (default "scanners_valuers.go")
 ```
 
-###Usage of svgen in go:generate instruction:
+# Usage of svgen in go:generate instruction:
 ```go
 //go:generate svgen -i your.package/name -o scanners_valuers_generated.go
 ```
