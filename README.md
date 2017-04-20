@@ -7,8 +7,8 @@ package db
 type RideStatus string
 
 const(
-  RideStatusInitiated RideStatus = "initiated"
-  RideStatusComplete  RideStatus = "complete"
+  RideStatusStarted   RideStatus = "started"
+  RideStatusComplete  RideStatus = "completed"
 )
 ``` 
 
@@ -76,4 +76,9 @@ func (t RideStatus) Value() (driver.Value, error) {
 # Usage of svgen in go:generate instruction:
 ```go
 //go:generate svgen -i your.package/name -o scanners_valuers_generated.go
+```
+
+# Run tests
+```
+make
 ```

@@ -22,3 +22,5 @@ _testmain.go
 *.exe
 *.test
 *.prof
+
+/tests/scanners_valuers.go
