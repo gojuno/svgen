@@ -79,5 +79,6 @@ func (t RideStatus) Value() (driver.Value, error) {
 ```
 
 # Run tests
-```make
+```
+make
 ```
