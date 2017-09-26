@@ -188,7 +188,7 @@ const template = `
 				switch vv {
 				{{range $value := $typeInfo.Values}}case {{$value}}:{{end}}
 				default:
-					return fmt.Errorf("invalid value of type {{$typeName}}: %v", *t)
+					return fmt.Errorf("invalid value of type {{$typeName}}: %v", vv)
 				}
 
 				*t = vv

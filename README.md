@@ -42,7 +42,7 @@ func (t *RideStatus) Scan(i interface{}) error {
 	case RideStatusInitiated:
 	case RideStatusComplete:
 	default:
-		return fmt.Errorf("invalid value of type RideStatus: %v", *t)
+		return fmt.Errorf("invalid value of type RideStatus: %v", vv)
 	}
 
 	*t = vv
