@@ -1,5 +1,5 @@
-# Summary
-Svgen search for the constants of types which are the aliases for int or string types, i.e.:
+# svgen [![Build Status](https://travis-ci.org/gojuno/svgen.svg?branch=master)](https://travis-ci.org/gojuno/svgen)
+svgen search for the constants of types which are the aliases for int or string types, i.e.:
 
 ```go
 package db
